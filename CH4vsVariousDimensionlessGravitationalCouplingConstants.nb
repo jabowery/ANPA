@@ -1,0 +1,1363 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 13.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     55175,       1355]
+NotebookOptionsPosition[     51451,       1286]
+NotebookOutlinePosition[     51857,       1302]
+CellTagsIndexPosition[     51814,       1299]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"Taking", " ", 
+     RowBox[{"Dirac", "'"}], "s", " ", "large", " ", "numbers", " ", 
+     "hypothesis", " ", "and", " ", "the", " ", "combinatorial", " ", 
+     "hierarchy", " ", "as", " ", "a", " ", "starting", " ", "point"}], ",", 
+    " ", 
+    RowBox[{
+    "this", " ", "notebook", " ", "ranks", " ", "particles", " ", "according",
+      " ", "to", " ", "how", " ", "well", " ", "their", " ", "use", " ", "in",
+      " ", "calculating", " ", "the", " ", "dimensionless", " ", 
+     "gravitational", " ", "couplilng", " ", "constant", " ", "fits", " ", 
+     "the", " ", "fourth", " ", "entry", " ", "in", " ", "the", " ", 
+     "combinatorial", " ", 
+     RowBox[{
+     "hierarchy", ".", "  ", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      "The"}], " ", "third", " ", "entry", " ", "of", " ", "the", " ", 
+     "combinmatorial", " ", "hierarchy", " ", "is", " ", "137"}], ",", " ", 
+    RowBox[{
+    "which", " ", "corresponds", " ", "to", " ", "the", " ", "dimensionless", 
+     " ", "coupling", " ", "constant", " ", "for", " ", 
+     RowBox[{"electromagnetism", ".", "  ", "The"}], " ", "first", " ", "and",
+      " ", "second", " ", "entries", " ", "are", " ", "conjectured", " ", 
+     "to", " ", "belong", " ", "to", " ", "the", " ", "other", " ", "two", 
+     " ", "fundamental", " ", 
+     RowBox[{"forces", "."}]}]}], " ", "*)"}], "\[IndentingNewLine]", 
+  "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"CombinatorialHierarchy", "=", 
+    RowBox[{"Accumulate", "[", 
+     RowBox[{
+      RowBox[{"NestList", "[", 
+       RowBox[{
+        RowBox[{"Function", "[", 
+         RowBox[{"x", ",", 
+          RowBox[{
+           RowBox[{"2", "^", "x"}], "-", "1"}]}], "]"}], ",", "n", ",", "3"}],
+        "]"}], "/.", 
+      RowBox[{"n", "->", "3"}]}], "]"}]}], "\[IndentingNewLine]"}]}]], "Input",\
+
+ CellChangeTimes->{
+  3.8819490214173317`*^9, {3.8819493618636303`*^9, 3.8819496343413763`*^9}, {
+   3.881949718990096*^9, 3.881949724638942*^9}, {3.88194978418883*^9, 
+   3.881949810292335*^9}},
+ CellLabel->"In[36]:=",ExpressionUUID->"a35f89f9-0f17-440f-826f-b3ddec3b6356"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+  "3", ",", "10", ",", "137", ",", 
+   "170141183460469231731687303715884105864"}], "}"}]], "Output",
+ CellChangeTimes->{3.881949119018395*^9, 3.881949660585682*^9, 
+  3.8819497496119843`*^9, 3.912975833946252*^9},
+ CellLabel->"Out[36]=",ExpressionUUID->"f80b80cb-b277-4316-ad4e-330250866a79"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"CH4", " ", "=", " ", 
+   RowBox[{"N", "[", 
+    RowBox[{"Log10", "[", 
+     RowBox[{"Last", "[", "CombinatorialHierarchy", "]"}], "]"}], "]"}]}], 
+  "\[IndentingNewLine]"}]], "Input",
+ CellChangeTimes->{3.8819490298331137`*^9},
+ CellLabel->"In[37]:=",ExpressionUUID->"6b3ab4e5-3805-4b2d-b4cf-40a30b5c20cc"],
+
+Cell[BoxData["38.230809449325605`"], "Output",
+ CellChangeTimes->{3.881949119070273*^9, 3.8819496611631193`*^9, 
+  3.881949749779747*^9, 3.912975834007156*^9},
+ CellLabel->"Out[37]=",ExpressionUUID->"2cdbf22e-f1cb-4d42-8f93-8bf274b3540f"]
+}, Open  ]],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"codata", "[", "canonicalName_", "]"}], ":=", " ", 
+  RowBox[{"Around", "@@", 
+   RowBox[{
+    RowBox[{"Entity", "[", 
+     RowBox[{"\"\<PhysicalConstant\>\"", ",", "canonicalName"}], "]"}], "[", 
+    RowBox[{"{", 
+     RowBox[{"\"\<Value\>\"", ",", "\"\<StandardUncertainty\>\""}], "}"}], 
+    "]"}]}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+  "DimensionlessGravitationalCouplingConstant", "[", "particle_", "]"}], ":=", 
+  RowBox[{"{", 
+   RowBox[{"particle", ",", 
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{"Log10", "[", 
+        RowBox[{
+         RowBox[{"codata", "[", "\"\<PlanckConstant\>\"", "]"}], "*", 
+         RowBox[{
+          RowBox[{"codata", "[", "\"\<SpeedOfLight\>\"", "]"}], "/", 
+          RowBox[{"(", 
+           RowBox[{"2", " ", "Pi", " ", 
+            RowBox[{"codata", "[", "\"\<GravitationalConstant\>\"", "]"}], 
+            "*", 
+            RowBox[{
+             RowBox[{"ParticleData", "[", 
+              RowBox[{"particle", ",", "\"\<Mass\>\""}], "]"}], "^", "2"}]}], 
+           ")"}]}]}], "]"}], "-", "CH4"}], ")"}], "^", "2"}]}], 
+   "}"}]}], "\[IndentingNewLine]"}], "Input",
+ CellChangeTimes->{
+  3.881949040177307*^9, {3.881949731261382*^9, 3.8819497326460447`*^9}},
+ CellLabel->"In[38]:=",ExpressionUUID->"fe610a46-1d1c-4995-82ab-15542a2be760"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"SortBy", "[", 
+  RowBox[{
+   RowBox[{"Map", "[", 
+    RowBox[{"DimensionlessGravitationalCouplingConstant", ",", 
+     RowBox[{"ParticleData", "[", "]"}]}], "]"}], ",", 
+   RowBox[{"First", " ", "@*", " ", "Rest"}]}], "]"}]], "Input",
+ CellLabel->"In[40]:=",ExpressionUUID->"abb7c219-623b-4f19-b165-d6e1a2313803"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Power", "infy", 
+   "\"Infinite expression \\!\\(\\*FractionBox[\\\"1\\\", \
+\\\"0``21.377414407984126\\\"]\\) encountered.\"", 2, 40, 1, 
+   32345159886663315658, "Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.8819491197867603`*^9, 3.8819496628752327`*^9, 
+  3.8819497526769114`*^9, 3.912975836706868*^9},
+ CellLabel->
+  "During evaluation of \
+In[40]:=",ExpressionUUID->"94fa0d9e-c2e1-4617-ac30-db1d4fe4d0a3"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Power", "infy", 
+   "\"Infinite expression \\!\\(\\*FractionBox[\\\"1\\\", \
+\\\"0``21.377414407984126\\\"]\\) encountered.\"", 2, 40, 2, 
+   32345159886663315658, "Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.8819491197867603`*^9, 3.8819496628752327`*^9, 
+  3.8819497526769114`*^9, 3.912975836728352*^9},
+ CellLabel->
+  "During evaluation of \
+In[40]:=",ExpressionUUID->"a75ecbf6-10bd-46ee-be66-0198073aa5c1"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Power", "infy", 
+   "\"Infinite expression \\!\\(\\*FractionBox[\\\"1\\\", \\\"0.`\\\"]\\) \
+encountered.\"", 2, 40, 3, 32345159886663315658, "Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.8819491197867603`*^9, 3.8819496628752327`*^9, 
+  3.8819497526769114`*^9, 3.912975836785494*^9},
+ CellLabel->
+  "During evaluation of \
+In[40]:=",ExpressionUUID->"43471af3-e8fd-4d7e-bd98-2aca128d5086"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "General", "stop", 
+   "\"Further output of \\!\\(\\*StyleBox[RowBox[{\\\"Power\\\", \\\"::\\\", \
+\\\"infy\\\"}], \\\"MessageName\\\"]\\) will be suppressed during this \
+calculation.\"", 2, 40, 4, 32345159886663315658, "Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.8819491197867603`*^9, 3.8819496628752327`*^9, 
+  3.8819497526769114`*^9, 3.91297583678865*^9},
+ CellLabel->
+  "During evaluation of \
+In[40]:=",ExpressionUUID->"17839d22-485e-4dc7-8f44-b7acdb563c34"],
+
+Cell[BoxData[
+ InterpretationBox[
+  TagBox[
+   FrameBox[GridBox[{
+      {
+       ItemBox[
+        TagBox[
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{
+             TemplateBox[{"\"proton\"", 
+               RowBox[{"Entity", "[", 
+                 RowBox[{"\"Particle\"", ",", "\"Proton\""}], "]"}], 
+               "\"Entity[\\\"Particle\\\", \\\"Proton\\\"]\"", "\"particle\""},
+              "Entity"], ",", 
+             InterpretationBox[
+              TemplateBox[{"4.47", "0.04", 
+                SuperscriptBox["10", "-6"]},
+               "AroundExp"],
+              Around[4.468256287559071*^-6, 4.126376770585078*^-8]]}], "}"}], 
+           ",", 
+           RowBox[{"{", 
+            RowBox[{
+             TemplateBox[{"\"anti\[Hyphen]proton\"", 
+               RowBox[{"Entity", "[", 
+                 RowBox[{"\"Particle\"", ",", "\"ProtonBar\""}], "]"}], 
+               "\"Entity[\\\"Particle\\\", \\\"ProtonBar\\\"]\"", 
+               "\"particle\""},
+              "Entity"], ",", 
+             InterpretationBox[
+              TemplateBox[{"4.47", "0.04", 
+                SuperscriptBox["10", "-6"]},
+               "AroundExp"],
+              Around[4.468256287559071*^-6, 4.126376770585078*^-8]]}], "}"}], 
+           ",", 
+           RowBox[{"{", 
+            RowBox[{
+             TemplateBox[{"\"neutron\"", 
+               RowBox[{"Entity", "[", 
+                 RowBox[{"\"Particle\"", ",", "\"Neutron\""}], "]"}], 
+               "\"Entity[\\\"Particle\\\", \\\"Neutron\\\"]\"", 
+               "\"particle\""},
+              "Entity"], ",", 
+             InterpretationBox[
+              TemplateBox[{"0.0000109", "6", "6"},
+               "AroundSeq"],
+              Around[0.000010957942465593598`, 6.461961263436839*^-8]]}], 
+            "}"}], ",", 
+           RowBox[{"{", 
+            RowBox[{
+             TemplateBox[{
+               TemplateBox[{
+                 OverscriptBox["\"n\"", "_"]}, "RowDefault"], 
+               RowBox[{"Entity", "[", 
+                 RowBox[{"\"Particle\"", ",", "\"NeutronBar\""}], "]"}], 
+               "\"Entity[\\\"Particle\\\", \\\"NeutronBar\\\"]\"", 
+               "\"particle\""},
+              "Entity"], ",", 
+             InterpretationBox[
+              TemplateBox[{"0.0000109", "6", "6"},
+               "AroundSeq"],
+              Around[0.000010957942465593598`, 6.461961263436839*^-8]]}], 
+            "}"}], ",", 
+           RowBox[{"{", 
+            RowBox[{
+             TemplateBox[{
+               TemplateBox[{
+                 
+                 TemplateBox[{"\"\[Eta]\"", "\"\[Prime]\""}, "Superscript", 
+                  SyntaxForm -> SuperscriptBox], "\"(958)\""}, "RowDefault"], 
+               
+               RowBox[{"Entity", "[", 
+                 RowBox[{"\"Particle\"", ",", "\"EtaPrime\""}], "]"}], 
+               "\"Entity[\\\"Particle\\\", \\\"EtaPrime\\\"]\"", 
+               "\"particle\""},
+              "Entity"], ",", 
+             InterpretationBox[
+              TemplateBox[{"0.000399", "5", "4"},
+               "AroundSeq"],
+              Around[0.0003995126603410918, 3.9018009989030956`*^-7]]}], 
+            "}"}], ",", 
+           RowBox[{"{", 
+            RowBox[{
+             TemplateBox[{
+               TemplateBox[{
+                 
+                 TemplateBox[{"\"K\"", "\"*\""}, "Superscript", SyntaxForm -> 
+                  SuperscriptBox], 
+                 
+                 TemplateBox[{"\"(892)\"", "\"0\""}, "Superscript", 
+                  SyntaxForm -> SuperscriptBox]}, "RowDefault"], 
+               RowBox[{"Entity", "[", 
+                 RowBox[{"\"Particle\"", ",", "\"KStarZero\""}], "]"}], 
+               "\"Entity[\\\"Particle\\\", \\\"KStarZero\\\"]\"", 
+               "\"particle\""},
+              "Entity"], ",", 
+             InterpretationBox[
+              TemplateBox[{"0.001438", "5", "7"},
+               "AroundSeq"],
+              Around[0.0014385101190502027`, 7.403827692725979*^-7]]}], "}"}],
+            ",", 
+           RowBox[{"{", 
+            RowBox[{
+             TemplateBox[{
+               TemplateBox[{
+                 TemplateBox[{
+                   OverscriptBox["\"K\"", "_"], "\"*\""}, "Superscript", 
+                  SyntaxForm -> SuperscriptBox], 
+                 
+                 TemplateBox[{"\"(892)\"", "\"0\""}, "Superscript", 
+                  SyntaxForm -> SuperscriptBox]}, "RowDefault"], 
+               RowBox[{"Entity", "[", 
+                 RowBox[{"\"Particle\"", ",", "\"KStarZeroBar\""}], "]"}], 
+               "\"Entity[\\\"Particle\\\", \\\"KStarZeroBar\\\"]\"", 
+               "\"particle\""},
+              "Entity"], ",", 
+             InterpretationBox[
+              TemplateBox[{"0.001438", "5", "7"},
+               "AroundSeq"],
+              Around[0.0014385101190502027`, 7.403827692725979*^-7]]}], "}"}],
+            ",", 
+           RowBox[{"{", 
+            RowBox[{
+             TemplateBox[{
+               TemplateBox[{
+                 SubscriptBox["\"f\"", "\"0\""], "\"(980)\""}, "RowDefault"], 
+               
+               RowBox[{"Entity", "[", 
+                 RowBox[{"\"Particle\"", ",", 
+                   RowBox[{"{", 
+                    RowBox[{"\"F0Meson980\"", ",", "0"}], "}"}]}], "]"}], 
+               "\"Entity[\\\"Particle\\\", {\\\"F0Meson980\\\", 0}]\"", 
+               "\"particle\""},
+              "Entity"], ",", 
+             InterpretationBox[
+              TemplateBox[{"0.001592", "7", "8"},
+               "AroundSeq"],
+              Around[0.0015926832738839176`, 7.790486009088161*^-7]]}], "}"}],
+            ",", 
+           RowBox[{"{", 
+            RowBox[{
+             TemplateBox[{
+               TemplateBox[{
+                 
+                 TemplateBox[{"\"K\"", "\"*\""}, "Superscript", SyntaxForm -> 
+                  SuperscriptBox], 
+                 
+                 TemplateBox[{"\"(892)\"", "\"-\""}, "Superscript", 
+                  SyntaxForm -> SuperscriptBox]}, "RowDefault"], 
+               RowBox[{"Entity", "[", 
+                 RowBox[{"\"Particle\"", ",", "\"KStarMinus\""}], "]"}], 
+               "\"Entity[\\\"Particle\\\", \\\"KStarMinus\\\"]\"", 
+               "\"particle\""},
+              "Entity"], ",", 
+             InterpretationBox[
+              TemplateBox[{"0.001776", "2", "8"},
+               "AroundSeq"],
+              Around[0.0017762133425661248`, 8.227111938872179*^-7]]}], "}"}],
+            ",", 
+           RowBox[{"{", 
+            RowBox[{
+             TemplateBox[{
+               TemplateBox[{
+                 
+                 TemplateBox[{"\"K\"", "\"*\""}, "Superscript", SyntaxForm -> 
+                  SuperscriptBox], 
+                 
+                 TemplateBox[{"\"(892)\"", "\"+\""}, "Superscript", 
+                  SyntaxForm -> SuperscriptBox]}, "RowDefault"], 
+               RowBox[{"Entity", "[", 
+                 RowBox[{"\"Particle\"", ",", "\"KStarPlus\""}], "]"}], 
+               "\"Entity[\\\"Particle\\\", \\\"KStarPlus\\\"]\"", 
+               "\"particle\""},
+              "Entity"], ",", 
+             InterpretationBox[
+              TemplateBox[{"0.001776", "2", "8"},
+               "AroundSeq"],
+              Around[0.0017762133425661248`, 8.227111938872179*^-7]]}], "}"}],
+            ",", 
+           RowBox[{"{", 
+            RowBox[{
+             TemplateBox[{
+               TemplateBox[{
+                 SubscriptBox["\"a\"", "\"0\""], 
+                 
+                 TemplateBox[{"\"(980)\"", "\"-\""}, "Superscript", 
+                  SyntaxForm -> SuperscriptBox]}, "RowDefault"], 
+               RowBox[{"Entity", "[", 
+                 RowBox[{"\"Particle\"", ",", 
+                   RowBox[{"{", 
+                    RowBox[{"\"A0Meson980\"", ",", 
+                    RowBox[{"-", "1"}]}], "}"}]}], "]"}], 
+               "\"Entity[\\\"Particle\\\", {\\\"A0Meson980\\\", -1}]\"", 
+               "\"particle\""},
+              "Entity"], ",", 
+             InterpretationBox[
+              TemplateBox[{"0.001941", "7", "9"},
+               "AroundSeq"],
+              Around[0.0019416502474628192`, 8.601720834612502*^-7]]}], "}"}],
+            ",", 
+           RowBox[{"{", 
+            RowBox[{
+             TemplateBox[{
+               TemplateBox[{
+                 SubscriptBox["\"a\"", "\"0\""], 
+                 TemplateBox[{"\"(980)\"", "\"0\""}, "Superscript", 
+                  SyntaxForm -> SuperscriptBox]}, "RowDefault"], 
+               RowBox[{"Entity", "[", 
+                 RowBox[{"\"Particle\"", ",", 
+                   RowBox[{"{", 
+                    RowBox[{"\"A0Meson980\"", ",", "0"}], "}"}]}], "]"}], 
+               "\"Entity[\\\"Particle\\\", {\\\"A0Meson980\\\", 0}]\"", 
+               "\"particle\""},
+              "Entity"], ",", 
+             InterpretationBox[
+              TemplateBox[{"0.001941", "7", "9"},
+               "AroundSeq"],
+              Around[0.0019416502474628192`, 8.601720834612502*^-7]]}], "}"}],
+            ",", 
+           RowBox[{"{", 
+            RowBox[{
+             TemplateBox[{
+               TemplateBox[{
+                 SubscriptBox["\"a\"", "\"0\""], 
+                 
+                 TemplateBox[{"\"(980)\"", "\"+\""}, "Superscript", 
+                  SyntaxForm -> SuperscriptBox]}, "RowDefault"], 
+               RowBox[{"Entity", "[", 
+                 RowBox[{"\"Particle\"", ",", 
+                   RowBox[{"{", 
+                    RowBox[{"\"A0Meson980\"", ",", "1"}], "}"}]}], "]"}], 
+               "\"Entity[\\\"Particle\\\", {\\\"A0Meson980\\\", 1}]\"", 
+               "\"particle\""},
+              "Entity"], ",", 
+             InterpretationBox[
+              TemplateBox[{"0.001941", "7", "9"},
+               "AroundSeq"],
+              Around[0.0019416502474628192`, 8.601720834612502*^-7]]}], "}"}],
+            ",", 
+           RowBox[{"{", 
+            RowBox[{
+             TemplateBox[{
+               TemplateBox[{"\"\[Phi]\"", "\"(1020)\""}, "RowDefault"], 
+               RowBox[{"Entity", "[", 
+                 RowBox[{"\"Particle\"", ",", 
+                   RowBox[{"{", 
+                    RowBox[{"\"PhiMeson1020\"", ",", "0"}], "}"}]}], "]"}], 
+               "\"Entity[\\\"Particle\\\", {\\\"PhiMeson1020\\\", 0}]\"", 
+               "\"particle\""},
+              "Entity"], ",", 
+             InterpretationBox[
+              TemplateBox[{"0.00550", "51", "14"},
+               "AroundSeq"],
+              Around[0.0055051451388682966`, 1.448385702199483*^-6]]}], "}"}],
+            ",", 
+           RowBox[{"{", 
+            RowBox[{
+             TemplateBox[{
+               TemplateBox[{
+                 
+                 TemplateBox[{"\"K\"", "\"0\"", "\"*\""}, "Subsuperscript", 
+                  SyntaxForm -> SubsuperscriptBox], 
+                 
+                 TemplateBox[{"\"(800)\"", "\"0\""}, "Superscript", 
+                  SyntaxForm -> SuperscriptBox]}, "RowDefault"], 
+               RowBox[{"Entity", "[", 
+                 RowBox[{"\"Particle\"", ",", 
+                   RowBox[{"{", 
+                    RowBox[{"\"K0StarMeson800\"", ",", "0"}], "}"}]}], "]"}], 
+               "\"Entity[\\\"Particle\\\", {\\\"K0StarMeson800\\\", 0}]\"", 
+               "\"particle\""},
+              "Entity"], ",", 
+             InterpretationBox[
+              TemplateBox[{"0.00883", "32", "18"},
+               "AroundSeq"],
+              Around[0.008833207130476538, 1.8346746046146804`*^-6]]}], "}"}],
+            ",", 
+           RowBox[{"{", 
+            RowBox[{
+             TemplateBox[{
+               TemplateBox[{
+                 
+                 TemplateBox[{"\"K\"", "\"0\"", "\"*\""}, "Subsuperscript", 
+                  SyntaxForm -> SubsuperscriptBox], 
+                 
+                 TemplateBox[{"\"(800)\"", "\"+\""}, "Superscript", 
+                  SyntaxForm -> SuperscriptBox]}, "RowDefault"], 
+               RowBox[{"Entity", "[", 
+                 RowBox[{"\"Particle\"", ",", 
+                   RowBox[{"{", 
+                    RowBox[{"\"K0StarMeson800\"", ",", "1"}], "}"}]}], "]"}], 
+               "\"Entity[\\\"Particle\\\", {\\\"K0StarMeson800\\\", 1}]\"", 
+               "\"particle\""},
+              "Entity"], ",", 
+             InterpretationBox[
+              TemplateBox[{"0.00883", "32", "18"},
+               "AroundSeq"],
+              Around[0.008833207130476538, 1.8346746046146804`*^-6]]}], "}"}],
+            ",", 
+           RowBox[{"{", 
+            RowBox[{
+             TemplateBox[{
+               TemplateBox[{
+                 
+                 TemplateBox[{"\"K\"", "\"0\"", "\"*\""}, "Subsuperscript", 
+                  SyntaxForm -> SubsuperscriptBox], 
+                 
+                 TemplateBox[{"\"(800)\"", "\"-\""}, "Superscript", 
+                  SyntaxForm -> SuperscriptBox]}, "RowDefault"], 
+               RowBox[{"Entity", "[", 
+                 RowBox[{"\"Particle\"", ",", 
+                   RowBox[{"{", 
+                    RowBox[{"\"K0StarMeson800Bar\"", ",", 
+                    RowBox[{"-", "1"}]}], "}"}]}], "]"}], 
+               "\"Entity[\\\"Particle\\\", {\\\"K0StarMeson800Bar\\\", \
+-1}]\"", "\"particle\""},
+              "Entity"], ",", 
+             InterpretationBox[
+              TemplateBox[{"0.00883", "32", "18"},
+               "AroundSeq"],
+              Around[0.008833207130476538, 1.8346746046146804`*^-6]]}], "}"}],
+            ",", 
+           TemplateBox[{"968"},
+            "OutputSizeLimit`Skeleton"], ",", 
+           RowBox[{"{", 
+            RowBox[{
+             TemplateBox[{"\"Z boson\"", 
+               RowBox[{"Entity", "[", 
+                 RowBox[{"\"Particle\"", ",", "\"ZBoson\""}], "]"}], 
+               "\"Entity[\\\"Particle\\\", \\\"ZBoson\\\"]\"", "\"particle\""},
+              "Entity"], ",", 
+             InterpretationBox[
+              TemplateBox[{"15.81914", "0.00008"},
+               "Around"],
+              Around[15.81913687208141, 0.0000776410203528435]]}], "}"}], ",", 
+           RowBox[{"{", 
+            RowBox[{
+             TemplateBox[{"\"top quark\"", 
+               RowBox[{"Entity", "[", 
+                 RowBox[{"\"Particle\"", ",", "\"TopQuark\""}], "]"}], 
+               "\"Entity[\\\"Particle\\\", \\\"TopQuark\\\"]\"", 
+               "\"particle\""},
+              "Entity"], ",", 
+             InterpretationBox[
+              TemplateBox[{"20.60754", "0.00009"},
+               "Around"],
+              Around[20.607537681808832`, 0.00008861615323458455]]}], "}"}], 
+           ",", 
+           RowBox[{"{", 
+            RowBox[{
+             TemplateBox[{"\"top antiquark\"", 
+               RowBox[{"Entity", "[", 
+                 RowBox[{"\"Particle\"", ",", "\"TopQuarkBar\""}], "]"}], 
+               "\"Entity[\\\"Particle\\\", \\\"TopQuarkBar\\\"]\"", 
+               "\"particle\""},
+              "Entity"], ",", 
+             InterpretationBox[
+              TemplateBox[{"20.60754", "0.00009"},
+               "Around"],
+              Around[20.607537681808832`, 0.00008861615323458455]]}], "}"}], 
+           ",", 
+           RowBox[{"{", 
+            RowBox[{
+             TemplateBox[{"\"down quark\"", 
+               RowBox[{"Entity", "[", 
+                 RowBox[{"\"Particle\"", ",", "\"DownQuark\""}], "]"}], 
+               "\"Entity[\\\"Particle\\\", \\\"DownQuark\\\"]\"", 
+               "\"particle\""},
+              "Entity"], ",", 
+             InterpretationBox[
+              TemplateBox[{"20.65342", "0.00009"},
+               "Around"],
+              Around[20.65342284993971, 0.00008871475565416007]]}], "}"}], 
+           ",", 
+           RowBox[{"{", 
+            RowBox[{
+             TemplateBox[{"\"down antiquark\"", 
+               RowBox[{"Entity", "[", 
+                 RowBox[{"\"Particle\"", ",", "\"DownQuarkBar\""}], "]"}], 
+               "\"Entity[\\\"Particle\\\", \\\"DownQuarkBar\\\"]\"", 
+               "\"particle\""},
+              "Entity"], ",", 
+             InterpretationBox[
+              TemplateBox[{"20.65342", "0.00009"},
+               "Around"],
+              Around[20.65342284993971, 0.00008871475565416007]]}], "}"}], 
+           ",", 
+           RowBox[{"{", 
+            RowBox[{
+             TemplateBox[{"\"up quark\"", 
+               RowBox[{"Entity", "[", 
+                 RowBox[{"\"Particle\"", ",", "\"UpQuark\""}], "]"}], 
+               "\"Entity[\\\"Particle\\\", \\\"UpQuark\\\"]\"", 
+               "\"particle\""},
+              "Entity"], ",", 
+             InterpretationBox[
+              TemplateBox[{"27.64339", "0.00010"},
+               "Around"],
+              Around[27.64339197761976, 0.00010263500513105702`]]}], "}"}], 
+           ",", 
+           RowBox[{"{", 
+            RowBox[{
+             TemplateBox[{"\"up antiquark\"", 
+               RowBox[{"Entity", "[", 
+                 RowBox[{"\"Particle\"", ",", "\"UpQuarkBar\""}], "]"}], 
+               "\"Entity[\\\"Particle\\\", \\\"UpQuarkBar\\\"]\"", 
+               "\"particle\""},
+              "Entity"], ",", 
+             InterpretationBox[
+              TemplateBox[{"27.64339", "0.00010"},
+               "Around"],
+              Around[27.64339197761976, 0.00010263500513105702`]]}], "}"}], 
+           ",", 
+           RowBox[{"{", 
+            RowBox[{
+             TemplateBox[{"\"electron\"", 
+               RowBox[{"Entity", "[", 
+                 RowBox[{"\"Particle\"", ",", "\"Electron\""}], "]"}], 
+               "\"Entity[\\\"Particle\\\", \\\"Electron\\\"]\"", 
+               "\"particle\""},
+              "Entity"], ",", 
+             InterpretationBox[
+              TemplateBox[{"42.58481", "0.00013"},
+               "Around"],
+              Around[42.58480944266442, 0.000127387612011288]]}], "}"}], ",", 
+           
+           RowBox[{"{", 
+            RowBox[{
+             TemplateBox[{"\"positron\"", 
+               RowBox[{"Entity", "[", 
+                 RowBox[{"\"Particle\"", ",", "\"Positron\""}], "]"}], 
+               "\"Entity[\\\"Particle\\\", \\\"Positron\\\"]\"", 
+               "\"particle\""},
+              "Entity"], ",", 
+             InterpretationBox[
+              TemplateBox[{"42.58481", "0.00013"},
+               "Around"],
+              Around[42.58480944266442, 0.000127387612011288]]}], "}"}], ",", 
+           
+           RowBox[{"{", 
+            RowBox[{
+             TemplateBox[{"\"electron neutrino\"", 
+               RowBox[{"Entity", "[", 
+                 RowBox[{"\"Particle\"", ",", "\"ElectronNeutrino\""}], "]"}],
+                "\"Entity[\\\"Particle\\\", \\\"ElectronNeutrino\\\"]\"", 
+               "\"particle\""},
+              "Entity"], ",", "\[Infinity]"}], "}"}], ",", 
+           RowBox[{"{", 
+            RowBox[{
+             TemplateBox[{"\"electron antineutrino\"", 
+               RowBox[{"Entity", "[", 
+                 RowBox[{"\"Particle\"", ",", "\"ElectronNeutrinoBar\""}], 
+                 "]"}], "\"Entity[\\\"Particle\\\", \\\"ElectronNeutrinoBar\\\
+\"]\"", "\"particle\""},
+              "Entity"], ",", "\[Infinity]"}], "}"}], ",", 
+           RowBox[{"{", 
+            RowBox[{
+             TemplateBox[{"\"gluon\"", 
+               RowBox[{"Entity", "[", 
+                 RowBox[{"\"Particle\"", ",", "\"Gluon\""}], "]"}], 
+               "\"Entity[\\\"Particle\\\", \\\"Gluon\\\"]\"", "\"particle\""},
+              
+              "Entity"], ",", "\[Infinity]"}], "}"}], ",", 
+           RowBox[{"{", 
+            RowBox[{
+             TemplateBox[{"\"muon neutrino\"", 
+               RowBox[{"Entity", "[", 
+                 RowBox[{"\"Particle\"", ",", "\"MuonNeutrino\""}], "]"}], 
+               "\"Entity[\\\"Particle\\\", \\\"MuonNeutrino\\\"]\"", 
+               "\"particle\""},
+              "Entity"], ",", "\[Infinity]"}], "}"}], ",", 
+           RowBox[{"{", 
+            RowBox[{
+             TemplateBox[{"\"muon antineutrino\"", 
+               RowBox[{"Entity", "[", 
+                 RowBox[{"\"Particle\"", ",", "\"MuonNeutrinoBar\""}], "]"}], 
+               "\"Entity[\\\"Particle\\\", \\\"MuonNeutrinoBar\\\"]\"", 
+               "\"particle\""},
+              "Entity"], ",", "\[Infinity]"}], "}"}], ",", 
+           RowBox[{"{", 
+            RowBox[{
+             TemplateBox[{"\"photon\"", 
+               RowBox[{"Entity", "[", 
+                 RowBox[{"\"Particle\"", ",", "\"Photon\""}], "]"}], 
+               "\"Entity[\\\"Particle\\\", \\\"Photon\\\"]\"", "\"particle\""},
+              "Entity"], ",", "\[Infinity]"}], "}"}], ",", 
+           RowBox[{"{", 
+            RowBox[{
+             TemplateBox[{"\"tau neutrino\"", 
+               RowBox[{"Entity", "[", 
+                 RowBox[{"\"Particle\"", ",", "\"TauNeutrino\""}], "]"}], 
+               "\"Entity[\\\"Particle\\\", \\\"TauNeutrino\\\"]\"", 
+               "\"particle\""},
+              "Entity"], ",", "\[Infinity]"}], "}"}], ",", 
+           RowBox[{"{", 
+            RowBox[{
+             TemplateBox[{"\"tau antineutrino\"", 
+               RowBox[{"Entity", "[", 
+                 RowBox[{"\"Particle\"", ",", "\"TauNeutrinoBar\""}], "]"}], 
+               "\"Entity[\\\"Particle\\\", \\\"TauNeutrinoBar\\\"]\"", 
+               "\"particle\""},
+              "Entity"], ",", "\[Infinity]"}], "}"}]}], "}"}],
+         Short[#, 5]& ],
+        BaseStyle->{Deployed -> False},
+        StripOnInput->False]},
+      {GridBox[{
+         {
+          PaneBox[
+           TagBox[
+            TooltipBox[
+             StyleBox[
+              StyleBox[
+               DynamicBox[ToBoxes[
+                 FEPrivate`FrontEndResource[
+                 "FEStrings", "sizeBriefExplanation"], StandardForm],
+                ImageSizeCache->{55.44140625, {2., 7.}}],
+               StripOnInput->False,
+               DynamicUpdating->True,
+               LineSpacing->{1, 2},
+               LineIndent->0,
+               LinebreakAdjustments->{1., 100, 0, 0, 0}], "OSLText",
+              StripOnInput->False],
+             StyleBox[
+              DynamicBox[
+               ToBoxes[
+                FEPrivate`FrontEndResource["FEStrings", "sizeExplanation"], 
+                StandardForm]], DynamicUpdating -> True, LineIndent -> 0, 
+              LinebreakAdjustments -> {1., 100, 0, 0, 0}, 
+              LineSpacing -> {1, 2}, StripOnInput -> False]],
+            Annotation[#, 
+             Style[
+              Dynamic[
+               FEPrivate`FrontEndResource["FEStrings", "sizeExplanation"]], 
+              DynamicUpdating -> True, LineIndent -> 0, 
+              LinebreakAdjustments -> {1., 100, 0, 0, 0}, 
+              LineSpacing -> {1, 2}], "Tooltip"]& ],
+           Alignment->Center,
+           BaselinePosition->Baseline,
+           ImageSize->{Automatic, {25, Full}}], 
+          ButtonBox[
+           PaneSelectorBox[{False->
+            StyleBox[
+             StyleBox[
+              DynamicBox[ToBoxes[
+                FEPrivate`FrontEndResource["FEStrings", "sizeShowLess"], 
+                StandardForm],
+               ImageSizeCache->{49.25390625, {0., 7.}}],
+              StripOnInput->False,
+              DynamicUpdating->True,
+              LineSpacing->{1, 2},
+              LineIndent->0,
+              LinebreakAdjustments->{1., 100, 0, 0, 0}], "OSLControl",
+             StripOnInput->False], True->
+            StyleBox[
+             StyleBox[
+              DynamicBox[ToBoxes[
+                FEPrivate`FrontEndResource["FEStrings", "sizeShowLess"], 
+                StandardForm]],
+              StripOnInput->False,
+              DynamicUpdating->True,
+              LineSpacing->{1, 2},
+              LineIndent->0,
+              LinebreakAdjustments->{1., 100, 0, 0, 0}], "OSLControlActive",
+             StripOnInput->False]}, Dynamic[
+             CurrentValue["MouseOver"]],
+            Alignment->Center,
+            FrameMargins->0,
+            ImageSize->{Automatic, {25, Full}}],
+           Appearance->None,
+           BaselinePosition->Baseline,
+           
+           ButtonFunction:>OutputSizeLimit`ButtonFunction[
+            OutputSizeLimit`Defer, 40, 32345159886663315658, 5/2],
+           Enabled->True,
+           Evaluator->Automatic,
+           Method->"Queued"], 
+          ButtonBox[
+           PaneSelectorBox[{False->
+            StyleBox[
+             StyleBox[
+              DynamicBox[ToBoxes[
+                FEPrivate`FrontEndResource["FEStrings", "sizeShowMore"], 
+                StandardForm],
+               ImageSizeCache->{55.44140625, {0., 7.}}],
+              StripOnInput->False,
+              DynamicUpdating->True,
+              LineSpacing->{1, 2},
+              LineIndent->0,
+              LinebreakAdjustments->{1., 100, 0, 0, 0}], "OSLControl",
+             StripOnInput->False], True->
+            StyleBox[
+             StyleBox[
+              DynamicBox[ToBoxes[
+                FEPrivate`FrontEndResource["FEStrings", "sizeShowMore"], 
+                StandardForm],
+               ImageSizeCache->{55.44140625, {0., 7.}}],
+              StripOnInput->False,
+              DynamicUpdating->True,
+              LineSpacing->{1, 2},
+              LineIndent->0,
+              LinebreakAdjustments->{1., 100, 0, 0, 0}], "OSLControlActive",
+             StripOnInput->False]}, Dynamic[
+             CurrentValue["MouseOver"]],
+            Alignment->Center,
+            FrameMargins->0,
+            ImageSize->{Automatic, {25, Full}}],
+           Appearance->None,
+           BaselinePosition->Baseline,
+           
+           ButtonFunction:>OutputSizeLimit`ButtonFunction[
+            OutputSizeLimit`Defer, 40, 32345159886663315658, 5 2],
+           Enabled->True,
+           Evaluator->Automatic,
+           Method->"Queued"], 
+          ButtonBox[
+           PaneSelectorBox[{False->
+            StyleBox[
+             StyleBox[
+              DynamicBox[ToBoxes[
+                FEPrivate`FrontEndResource["FEStrings", "sizeShowAll"], 
+                StandardForm],
+               ImageSizeCache->{41.6015625, {0., 7.}}],
+              StripOnInput->False,
+              DynamicUpdating->True,
+              LineSpacing->{1, 2},
+              LineIndent->0,
+              LinebreakAdjustments->{1., 100, 0, 0, 0}], "OSLControl",
+             StripOnInput->False], True->
+            StyleBox[
+             StyleBox[
+              DynamicBox[ToBoxes[
+                FEPrivate`FrontEndResource["FEStrings", "sizeShowAll"], 
+                StandardForm],
+               ImageSizeCache->{41.6015625, {0., 7.}}],
+              StripOnInput->False,
+              DynamicUpdating->True,
+              LineSpacing->{1, 2},
+              LineIndent->0,
+              LinebreakAdjustments->{1., 100, 0, 0, 0}], "OSLControlActive",
+             StripOnInput->False]}, Dynamic[
+             CurrentValue["MouseOver"]],
+            Alignment->Center,
+            FrameMargins->0,
+            ImageSize->{Automatic, {25, Full}}],
+           Appearance->None,
+           BaselinePosition->Baseline,
+           
+           ButtonFunction:>OutputSizeLimit`ButtonFunction[
+            OutputSizeLimit`Defer, 40, 32345159886663315658, Infinity],
+           Enabled->True,
+           Evaluator->Automatic,
+           Method->"Queued"], 
+          ButtonBox[
+           PaneSelectorBox[{False->
+            StyleBox[
+             StyleBox[
+              DynamicBox[ToBoxes[
+                FEPrivate`FrontEndResource["FEStrings", "sizeChangeLimit"], 
+                StandardForm],
+               ImageSizeCache->{74.9296875, {0., 7.}}],
+              StripOnInput->False,
+              DynamicUpdating->True,
+              LineSpacing->{1, 2},
+              LineIndent->0,
+              LinebreakAdjustments->{1., 100, 0, 0, 0}], "OSLControl",
+             StripOnInput->False], True->
+            StyleBox[
+             StyleBox[
+              DynamicBox[ToBoxes[
+                FEPrivate`FrontEndResource["FEStrings", "sizeChangeLimit"], 
+                StandardForm],
+               ImageSizeCache->{74.9296875, {0., 7.}}],
+              StripOnInput->False,
+              DynamicUpdating->True,
+              LineSpacing->{1, 2},
+              LineIndent->0,
+              LinebreakAdjustments->{1., 100, 0, 0, 0}], "OSLControlActive",
+             StripOnInput->False]}, Dynamic[
+             CurrentValue["MouseOver"]],
+            Alignment->Center,
+            FrameMargins->0,
+            ImageSize->{Automatic, {25, Full}}],
+           Appearance->None,
+           BaselinePosition->Baseline,
+           ButtonFunction:>FrontEndExecute[{
+              FrontEnd`SetOptions[
+              FrontEnd`$FrontEnd, 
+               FrontEnd`PreferencesSettings -> {"Page" -> "Advanced"}], 
+              FrontEnd`FrontEndToken["PreferencesDialog"]}],
+           Evaluator->None,
+           Method->"Preemptive"]}
+        },
+        AutoDelete->False,
+        FrameStyle->GrayLevel[0.85],
+        GridBoxDividers->{"Columns" -> {False, {True}}},
+        GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}},
+        GridBoxSpacings->{"Columns" -> {{2}}}]}
+     },
+     DefaultBaseStyle->"Column",
+     GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+     GridBoxDividers->{"Columns" -> {{False}}, "Rows" -> {{False}}},
+     GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{1.}}},
+     GridBoxSpacings->{"Columns" -> {
+         Offset[0.27999999999999997`], {
+          Offset[0.5599999999999999]}, 
+         Offset[0.27999999999999997`]}, "Rows" -> {
+         Offset[0.2], 
+         Offset[1.2], {
+          Offset[0.4]}, 
+         Offset[0.2]}}],
+    BaseStyle->"OutputSizeLimit",
+    FrameMargins->{{12, 12}, {0, 15}},
+    FrameStyle->GrayLevel[0.85],
+    RoundingRadius->5,
+    StripOnInput->False],
+   Deploy,
+   DefaultBaseStyle->"Deploy"],
+  If[32345159886663315658 === $SessionID, 
+   Out[40], Message[
+     MessageName[Syntax, "noinfoker"]]; Missing["NotAvailable"]; 
+   Null]]], "Output",
+ CellChangeTimes->{3.881949143072206*^9, 3.881949666917555*^9, 
+  3.881949775464098*^9, 3.912975853191091*^9},
+ CellLabel->"Out[40]=",ExpressionUUID->"d9808102-f90a-4831-9e78-b3a672011ddb"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"UniverseNonProtonMassFraction", "=", 
+  RowBox[{
+   RowBox[{"-", 
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"codata", "[", "\"\<PlanckConstant\>\"", "]"}], "*", 
+       RowBox[{
+        RowBox[{"codata", "[", "\"\<SpeedOfLight\>\"", "]"}], "/", 
+        RowBox[{"(", 
+         RowBox[{"2", " ", "Pi", " ", 
+          RowBox[{"codata", "[", "\"\<GravitationalConstant\>\"", "]"}], "*", 
+          
+          RowBox[{
+           RowBox[{"ParticleData", "[", 
+            RowBox[{"\"\<Proton\>\"", ",", "\"\<Mass\>\""}], "]"}], "^", 
+           "2"}]}], ")"}]}]}], "-", 
+      RowBox[{"CombinatorialHierarchy", "[", 
+       RowBox[{"[", "4", "]"}], "]"}]}], ")"}]}], "/", 
+   RowBox[{"CombinatorialHierarchy", "[", 
+    RowBox[{"[", "4", "]"}], "]"}]}]}]], "Input",
+ CellChangeTimes->{{3.912976005091271*^9, 3.9129760572482023`*^9}, {
+  3.912978362092511*^9, 3.912978370923956*^9}, {3.912978502742095*^9, 
+  3.9129785371639557`*^9}, {3.912978590876317*^9, 3.912978606323841*^9}, {
+  3.912978642148678*^9, 3.9129786537317457`*^9}, {3.9129786852599287`*^9, 
+  3.912978714322768*^9}, {3.912978747164411*^9, 3.912978787619969*^9}, {
+  3.9130341125366707`*^9, 3.913034129702293*^9}, {3.9130342003025713`*^9, 
+  3.913034205476719*^9}, {3.913137048790619*^9, 
+  3.913137050003461*^9}},ExpressionUUID->"be8e6f3b-cd96-493b-84e5-\
+ba2cfbd35f7e"],
+
+Cell[BoxData[
+ InterpretationBox[
+  TemplateBox[{"0.004855", "0.000022"},
+   "Around"],
+  Around[0.0048554360943100907`2.0354333386281014, 
+   0.000022365144597314106`]]], "Output",
+ CellChangeTimes->{{3.91297869964179*^9, 3.912978715470025*^9}, {
+   3.9129787690121317`*^9, 3.912978790251762*^9}, {3.9130341141563177`*^9, 
+   3.9130341320959053`*^9}, 3.9130342068672943`*^9},
+ CellLabel->
+  "Out[266]=",ExpressionUUID->"dda17af8-8450-459b-bc73-d75639ae5f2f"]
+}, Open  ]],
+
+Cell[BoxData[{
+ RowBox[{"DarkMatterMassFraction", "=", " ", ".85"}], "\[IndentingNewLine]", 
+ RowBox[{"LightMatterMassFraction", " ", "=", " ", 
+  RowBox[{"1", "-", "DarkMatterMassFraction"}]}], "\[IndentingNewLine]", 
+ RowBox[{"HydrogenLightMatterMassFraction", " ", "=", " ", 
+  ".75"}], "\[IndentingNewLine]", 
+ RowBox[{"NonHydrogenLightMatterMassFraction", " ", "=", " ", 
+  RowBox[{"LightMatterMassFraction", 
+   RowBox[{"(", 
+    RowBox[{"1", "-", "HydrogenLightMatterMassFraction"}], 
+    ")"}]}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"NeutronMassFraction", " ", "=", " ", 
+   RowBox[{"NonHydrogenLightMatterMassFraction", "/", "2"}]}], " ", 
+  RowBox[{"(*", " ", 
+   RowBox[{
+   "appox", " ", "1", " ", "neutron", " ", "per", " ", "proton", " ", "in", 
+    " ", "heavier", " ", "nuclei"}], " ", "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{"me", " ", "=", " ", 
+  RowBox[{"UnitConvert", "[", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"codata", "[", "\"\<ElectronMass\>\"", "]"}], "*", 
+     RowBox[{
+      RowBox[{"codata", "[", "\"\<SpeedOfLight\>\"", "]"}], "^", "2"}]}], 
+    ",", "\"\<eV\>\""}], "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{"mp", " ", "=", " ", 
+  RowBox[{"UnitConvert", "[", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"codata", "[", "\"\<ProtonMass\>\"", "]"}], "*", 
+     RowBox[{
+      RowBox[{"codata", "[", "\"\<SpeedOfLight\>\"", "]"}], "^", "2"}]}], 
+    ",", "\"\<eV\>\""}], "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{"mHydrogen", " ", "=", " ", 
+  RowBox[{"UnitConvert", "[", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"Quantity", "[", 
+      RowBox[{"1.007825", ",", "\"\<Da\>\""}], "]"}], "*", 
+     RowBox[{
+      RowBox[{"codata", "[", "\"\<SpeedOfLight\>\"", "]"}], "^", "2"}]}], 
+    ",", "\"\<eV\>\""}], "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{"mNeutron", " ", "=", " ", 
+  RowBox[{"UnitConvert", "[", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"codata", "[", "\"\<NeutronMass\>\"", "]"}], "*", 
+     RowBox[{
+      RowBox[{"codata", "[", "\"\<SpeedOfLight\>\"", "]"}], "^", "2"}]}], 
+    ",", "\"\<eV\>\""}], "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{"pHydrinoMaximum", " ", "=", " ", "137"}], "\[IndentingNewLine]", 
+ RowBox[{"nHydrinoAverage", " ", "=", " ", 
+  RowBox[{"1", "/", 
+   RowBox[{"(", 
+    RowBox[{"pHydrinoMaximum", "/", "2"}], ")"}]}]}], "\[IndentingNewLine]", 
+ RowBox[{"mHydrino", " ", "=", " ", 
+  RowBox[{"mp", "+", "me", "-", 
+   RowBox[{
+    RowBox[{"Quantity", "[", 
+     RowBox[{"13.598", ",", "\"\<eV\>\""}], "]"}], "/", 
+    RowBox[{"nHydrinoAverage", "^", "2", " ", 
+     RowBox[{"(*", " ", 
+      RowBox[{"Mills", " ", "GUTCP", " ", 
+       RowBox[{"(", "5.1", ")"}]}], " ", "*)"}]}]}]}]}]}], "Input",
+ CellChangeTimes->{{3.912976123523904*^9, 3.912976172056479*^9}, {
+   3.912976211768991*^9, 3.912976291744134*^9}, {3.912978810587166*^9, 
+   3.912979058697857*^9}, {3.9129791321452303`*^9, 3.912979165314115*^9}, {
+   3.912979235250875*^9, 3.912979290832633*^9}, {3.912979755431694*^9, 
+   3.912979824110014*^9}, {3.912980534450555*^9, 3.91298068692216*^9}, {
+   3.912980725371723*^9, 3.912980731464571*^9}, {3.912980785873424*^9, 
+   3.912980811931437*^9}, 3.9129808479930058`*^9, {3.912980936911796*^9, 
+   3.912980937735628*^9}, 3.912980984119526*^9, {3.912981023542412*^9, 
+   3.912981043565261*^9}, 
+   3.9130264856039267`*^9},ExpressionUUID->"a66cef48-0941-4fdb-b482-\
+019af537f2ac"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"mNeutron", "-", "mp", "-", "me"}]], "Input",
+ CellChangeTimes->{{3.912976123523904*^9, 3.912976172056479*^9}, {
+   3.912976211768991*^9, 3.912976291744134*^9}, {3.912978810587166*^9, 
+   3.912979058697857*^9}, {3.9129791321452303`*^9, 3.912979165314115*^9}, {
+   3.912979235250875*^9, 3.912979290832633*^9}, {3.912979755431694*^9, 
+   3.912979824110014*^9}, {3.912980534450555*^9, 3.91298068692216*^9}, {
+   3.912980725371723*^9, 3.912980731464571*^9}, {3.912980785873424*^9, 
+   3.912980811931437*^9}, 3.9129808479930058`*^9, {3.912980936911796*^9, 
+   3.912980937735628*^9}, 3.912980984119526*^9, {3.912981023542412*^9, 
+   3.912981043565261*^9}, {3.9130264856039267`*^9, 3.913026496890861*^9}},
+ CellLabel->
+  "In[203]:=",ExpressionUUID->"3f110d64-cb27-4567-aa18-da3c53a24dda"],
+
+Cell[BoxData[
+ TemplateBox[{
+   RowBox[{"(", 
+     InterpretationBox[
+      TemplateBox[{"782333.4", "0.6"}, "Around", SyntaxForm -> PlusMinus], 
+      Around[782333.40990217463487557`5.67647033572313, 0.6071211897645012]], 
+     ")"}], "\"eV\"", "electronvolts", "\"Electronvolts\""},
+  "Quantity"]], "Output",
+ CellChangeTimes->{
+  3.912976174892788*^9, {3.912976234748048*^9, 3.912976260556406*^9}, 
+   3.912976292514847*^9, 3.9129791727289467`*^9, 3.9129792946274014`*^9, 
+   3.9129797915668497`*^9, 3.9129798245205603`*^9, {3.91298067221996*^9, 
+   3.912980687774909*^9}, 3.9129807347646523`*^9, 3.9129808123632708`*^9, 
+   3.9129808695515223`*^9, 3.912980938697056*^9, 3.9130264995033493`*^9},
+ CellLabel->
+  "Out[203]=",ExpressionUUID->"6737de72-8e1c-4f08-9a41-318eb6634cd4"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{".85", "/", 
+  RowBox[{"(", 
+   RowBox[{"1836", "*", "4"}], ")"}]}]], "Input",
+ CellChangeTimes->{{3.912976558048403*^9, 3.912976569733941*^9}, {
+  3.9129767385258217`*^9, 3.912976749540935*^9}},
+ CellLabel->"In[50]:=",ExpressionUUID->"b9b929ad-ff5a-4c33-9e5f-f54908de140a"],
+
+Cell[BoxData["0.00011574074074074075`"], "Output",
+ CellChangeTimes->{3.912976576175357*^9, 3.912976750157605*^9},
+ CellLabel->"Out[50]=",ExpressionUUID->"f8c4ae15-66e8-4ec2-a915-18aab1e32f94"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"(", 
+  RowBox[{
+   RowBox[{"(", 
+    RowBox[{"1", "-", ".85"}], ")"}], "*", 
+   RowBox[{".75", "/", "1836"}]}], ")"}]], "Input",
+ CellChangeTimes->{{3.912976635845766*^9, 3.912976659782372*^9}},
+ CellLabel->"In[49]:=",ExpressionUUID->"db30631e-178e-41b7-8494-11221fc0eb89"],
+
+Cell[BoxData["0.00006127450980392158`"], "Output",
+ CellChangeTimes->{3.912976672421598*^9},
+ CellLabel->"Out[49]=",ExpressionUUID->"8b810566-8db5-4b89-a88c-d3864223d6f4"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"UnitConvert", "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"codata", "[", "\"\<ProtonMass\>\"", "]"}], "*", 
+    RowBox[{
+     RowBox[{"codata", "[", "\"\<SpeedOfLight\>\"", "]"}], "^", "2"}]}], ",", 
+   "\"\<eV\>\""}], "]"}]], "Input",
+ CellChangeTimes->{{3.91297732463581*^9, 3.91297738892308*^9}},
+ CellLabel->"In[53]:=",ExpressionUUID->"27ff9153-9e27-4b41-9272-c6eb1780e566"],
+
+Cell[BoxData[
+ TemplateBox[{
+   RowBox[{"(", 
+     InterpretationBox[
+      TemplateBox[{"9.38272088", "16", "29", 
+        SuperscriptBox["10", "8"]}, "AroundSeqExp", SyntaxForm -> PlusMinus], 
+      
+      Around[
+      9.382720881604904196112639413`9.207608310501746*^8, 0.290864347329752]],
+      ")"}], "\"eV\"", "electronvolts", "\"Electronvolts\""},
+  "Quantity"]], "Output",
+ CellChangeTimes->{{3.912977334796529*^9, 3.912977349483378*^9}, 
+   3.912977389625352*^9},
+ CellLabel->"Out[53]=",ExpressionUUID->"d18781f8-0728-4697-9437-d8eced7456b5"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"UnitConvert", "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"codata", "[", "\"\<ElectronMass\>\"", "]"}], "*", 
+    RowBox[{
+     RowBox[{"codata", "[", "\"\<SpeedOfLight\>\"", "]"}], "^", "2"}]}], ",", 
+   "\"\<eV\>\""}], "]"}]], "Input",
+ CellChangeTimes->{{3.912977422097651*^9, 3.912977461682241*^9}},
+ CellLabel->"In[56]:=",ExpressionUUID->"125188ca-1ab1-453e-bc1d-898047ebb97a"],
+
+Cell[BoxData[
+ TemplateBox[{
+   RowBox[{"(", 
+     InterpretationBox[
+      TemplateBox[{"510998.95000", "0.00016"}, "Around", SyntaxForm -> 
+       PlusMinus], 
+      Around[
+      510998.9499961641980756287`9.211300968617545, 0.00015706848090652465`]],
+      ")"}], "\"eV\"", "electronvolts", "\"Electronvolts\""},
+  "Quantity"]], "Output",
+ CellChangeTimes->{3.9129774250109043`*^9, 3.912977462916914*^9},
+ CellLabel->"Out[56]=",ExpressionUUID->"c6df9631-e45b-4eb4-99bd-cf30926755ad"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"UnitConvert", "[", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"codata", "[", "\"\<ProtonMass\>\"", "]"}], "*", 
+     RowBox[{
+      RowBox[{"codata", "[", "\"\<SpeedOfLight\>\"", "]"}], "^", "2"}]}], 
+    ",", "\"\<eV\>\""}], "]"}], "+", 
+  RowBox[{"UnitConvert", "[", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"codata", "[", "\"\<ElectronMass\>\"", "]"}], "*", 
+     RowBox[{
+      RowBox[{"codata", "[", "\"\<SpeedOfLight\>\"", "]"}], "^", "2"}]}], 
+    ",", "\"\<eV\>\""}], "]"}], "-", 
+  RowBox[{"UnitConvert", "[", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"Quantity", "[", 
+      RowBox[{"1.007825", ",", "\"\<Da\>\""}], "]"}], "*", 
+     RowBox[{
+      RowBox[{"codata", "[", "\"\<SpeedOfLight\>\"", "]"}], "^", "2"}]}], 
+    ",", "\"\<eV\>\""}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.9129774792090597`*^9, 3.9129774868017797`*^9}, {
+   3.912977552529202*^9, 3.9129775745926237`*^9}, {3.912977733268774*^9, 
+   3.912977752967513*^9}, 3.9129778075530148`*^9},
+ CellLabel->"In[64]:=",ExpressionUUID->"2bb3e0dc-b0c7-4a0d-b1c9-7ea7fa10b8e2"],
+
+Cell[BoxData[
+ TemplateBox[{
+   RowBox[{"(", 
+     InterpretationBox[
+      TemplateBox[{"43.34", "0.29"}, "Around", SyntaxForm -> PlusMinus], 
+      Around[43.341928482055664`, 0.29086438973870676`]], ")"}], "\"eV\"", 
+   "electronvolts", "\"Electronvolts\""},
+  "Quantity"]], "Output",
+ CellChangeTimes->{
+  3.912977489114861*^9, 3.912977575746606*^9, {3.912977742909288*^9, 
+   3.912977754187965*^9}, 3.912977808232946*^9},
+ CellLabel->"Out[64]=",ExpressionUUID->"86551652-2c78-4ac8-afbc-877dd5f1e69e"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Quantity", "[", 
+   RowBox[{"10*^53", ",", "\"\<kg\>\""}], "]"}], "/", 
+  RowBox[{"(", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"CombinatorialHierarchy", "[", 
+      RowBox[{"[", "4", "]"}], "]"}], "^", "2"}], "*", 
+    RowBox[{"codata", "[", "\"\<NeutronMass\>\"", "]"}]}], ")"}]}]], "Input",
+ CellChangeTimes->{{3.912977773623657*^9, 3.912977801616149*^9}, {
+  3.9130320566641483`*^9, 3.913032075527403*^9}, {3.913032236271213*^9, 
+  3.913032236750978*^9}, {3.913032290896187*^9, 3.913032349413959*^9}},
+ CellLabel->
+  "In[209]:=",ExpressionUUID->"c033436c-0262-4cbf-ae67-5bee513e8da8"],
+
+Cell[BoxData[
+ InterpretationBox[
+  TemplateBox[{"20624.578832", "0.000012"},
+   "Around"],
+  Around[20624.5788315028278754785`8.945242411684134, 
+   0.00001169802866861749]]], "Output",
+ CellChangeTimes->{{3.912977767530992*^9, 3.912977793060211*^9}, 
+   3.9130320801872063`*^9, 3.913032237234241*^9, {3.913032322178385*^9, 
+   3.9130323496913977`*^9}},
+ CellLabel->
+  "Out[209]=",ExpressionUUID->"9c4109c1-01aa-4426-b9ea-14b6b15a29e7"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"codata", "[", "\"\<UniverseMass\>\"", "]"}]], "Input",
+ CellChangeTimes->{{3.912977518739275*^9, 3.912977531441867*^9}, {
+  3.913032203142908*^9, 3.913032203830866*^9}, {3.9130336675030193`*^9, 
+  3.913033676130262*^9}},
+ CellLabel->
+  "In[210]:=",ExpressionUUID->"4cd0a5f1-4c6e-404d-89ed-621ff2283af3"],
+
+Cell[BoxData[
+ TemplateBox[{
+   InterpretationBox[
+    TemplateBox[{"1.51", "0.05", 
+      SuperscriptBox["10", "53"]}, "AroundExp"], 
+    Around[1.51184394580476`1.206782332063045*^53, 4.695638311994086*^51]], 
+   "\"kg\"", "kilograms", "\"Kilograms\""},
+  "Quantity"]], "Output",
+ CellChangeTimes->{3.913032204079612*^9, 3.913033676924163*^9},
+ CellLabel->
+  "Out[210]=",ExpressionUUID->"9ef639ef-bb6a-4b6c-b177-d2e3af365ab9"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Quantity", "compat", 
+   "\:f3b5\!\(\*FractionBox[SuperscriptBox[\(\\\"\\<Meters\\>\\\"\), \(2\)], \
+SuperscriptBox[\(\\\"\\<Seconds\\>\\\"\), \(2\)]]\) and \
+\!\(\\\"\\<Electronvolts\\>\\\"\) are incompatible units\:f3b5", 2, 58, 8, 
+   32345159886663315658, "Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ GeneratedCell->False,
+ CellAutoOverwrite->False,
+ CellChangeTimes->{
+  3.912977523046487*^9, 3.913032046632175*^9, {3.913032191447578*^9, 
+   3.9130321915828037`*^9}},ExpressionUUID->"63bde510-734a-4f1f-a8ac-\
+21c3e628cb11"],
+
+Cell[BoxData["$Failed"], "Output",
+ CellChangeTimes->{3.9129775230534782`*^9},
+ CellLabel->"Out[58]=",ExpressionUUID->"5c22a624-f1b4-4dfb-890a-c01e2e5624fd"]
+}, Open  ]]
+},
+WindowSize->{1438.5, 1493.25},
+WindowMargins->{{Automatic, 335.25}, {10.5, Automatic}},
+FrontEndVersion->"13.0 for Linux x86 (64-bit) (February 4, 2022)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"1ad66462-7a68-4f3e-97c6-01093bd8cdc1"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 2176, 46, 236, "Input",ExpressionUUID->"a35f89f9-0f17-440f-826f-b3ddec3b6356"],
+Cell[2759, 70, 333, 7, 33, "Output",ExpressionUUID->"f80b80cb-b277-4316-ad4e-330250866a79"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[3129, 82, 341, 8, 51, "Input",ExpressionUUID->"6b3ab4e5-3805-4b2d-b4cf-40a30b5c20cc"],
+Cell[3473, 92, 238, 3, 33, "Output",ExpressionUUID->"2cdbf22e-f1cb-4d42-8f93-8bf274b3540f"]
+}, Open  ]],
+Cell[3726, 98, 1348, 34, 94, "Input",ExpressionUUID->"fe610a46-1d1c-4995-82ab-15542a2be760"],
+Cell[CellGroupData[{
+Cell[5099, 136, 337, 7, 29, "Input",ExpressionUUID->"abb7c219-623b-4f19-b165-d6e1a2313803"],
+Cell[5439, 145, 468, 11, 40, "Message",ExpressionUUID->"94fa0d9e-c2e1-4617-ac30-db1d4fe4d0a3"],
+Cell[5910, 158, 468, 11, 40, "Message",ExpressionUUID->"a75ecbf6-10bd-46ee-be66-0198073aa5c1"],
+Cell[6381, 171, 446, 10, 39, "Message",ExpressionUUID->"43471af3-e8fd-4d7e-bd98-2aca128d5086"],
+Cell[6830, 183, 523, 11, 28, "Message",ExpressionUUID->"17839d22-485e-4dc7-8f44-b7acdb563c34"],
+Cell[7356, 196, 30019, 724, 276, "Output",ExpressionUUID->"d9808102-f90a-4831-9e78-b3a672011ddb"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[37412, 925, 1376, 30, 73, "Input",ExpressionUUID->"be8e6f3b-cd96-493b-84e5-ba2cfbd35f7e"],
+Cell[38791, 957, 459, 10, 33, "Output",ExpressionUUID->"dda17af8-8450-459b-bc73-d75639ae5f2f"]
+}, Open  ]],
+Cell[39265, 970, 3355, 75, 261, "Input",ExpressionUUID->"a66cef48-0941-4fdb-b482-019af537f2ac"],
+Cell[CellGroupData[{
+Cell[42645, 1049, 804, 12, 29, "Input",ExpressionUUID->"3f110d64-cb27-4567-aa18-da3c53a24dda"],
+Cell[43452, 1063, 782, 15, 39, "Output",ExpressionUUID->"6737de72-8e1c-4f08-9a41-318eb6634cd4"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[44271, 1083, 297, 6, 29, "Input",ExpressionUUID->"b9b929ad-ff5a-4c33-9e5f-f54908de140a"],
+Cell[44571, 1091, 193, 2, 33, "Output",ExpressionUUID->"f8c4ae15-66e8-4ec2-a915-18aab1e32f94"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[44801, 1098, 297, 7, 29, "Input",ExpressionUUID->"db30631e-178e-41b7-8494-11221fc0eb89"],
+Cell[45101, 1107, 171, 2, 33, "Output",ExpressionUUID->"8b810566-8db5-4b89-a88c-d3864223d6f4"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[45309, 1114, 399, 9, 29, "Input",ExpressionUUID->"27ff9153-9e27-4b41-9272-c6eb1780e566"],
+Cell[45711, 1125, 553, 13, 45, "Output",ExpressionUUID->"d18781f8-0728-4697-9437-d8eced7456b5"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[46301, 1143, 403, 9, 29, "Input",ExpressionUUID->"125188ca-1ab1-453e-bc1d-898047ebb97a"],
+Cell[46707, 1154, 487, 11, 39, "Output",ExpressionUUID->"c6df9631-e45b-4eb4-99bd-cf30926755ad"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[47231, 1170, 1072, 27, 51, "Input",ExpressionUUID->"2bb3e0dc-b0c7-4a0d-b1c9-7ea7fa10b8e2"],
+Cell[48306, 1199, 505, 11, 39, "Output",ExpressionUUID->"86551652-2c78-4ac8-afbc-877dd5f1e69e"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[48848, 1215, 621, 14, 31, "Input",ExpressionUUID->"c033436c-0262-4cbf-ae67-5bee513e8da8"],
+Cell[49472, 1231, 437, 10, 33, "Output",ExpressionUUID->"9c4109c1-01aa-4426-b9ea-14b6b15a29e7"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[49946, 1246, 327, 6, 29, "Input",ExpressionUUID->"4cd0a5f1-4c6e-404d-89ed-621ff2283af3"],
+Cell[50276, 1254, 428, 10, 42, "Output",ExpressionUUID->"9ef639ef-bb6a-4b6c-b177-d2e3af365ab9"],
+Cell[50707, 1266, 568, 13, 44, "Message",ExpressionUUID->"63bde510-734a-4f1f-a8ac-21c3e628cb11"],
+Cell[51278, 1281, 157, 2, 33, "Output",ExpressionUUID->"5c22a624-f1b4-4dfb-890a-c01e2e5624fd"]
+}, Open  ]]
+}
+]
+*)
+
