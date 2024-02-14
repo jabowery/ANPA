@@ -11,16 +11,19 @@ from sympy import Matrix
 import sys
 
 def isin(npar, setofnpar):
+# Check if a vector is in a set of vectors.
     for n in range(len(setofnpar)):
         if np.array_equal(setofnpar[n],npar):
             return n # return index
     return -1 # failed == illegal index
 
 def generate_bool_matrices(mdcs):
+    # This generates candidate autormorphism matrices for a level given its MDCsS.
     n = len(mdcs[0])
     for mrows in itertools.combinations(mdcs, n): # PITCH cols (col major) are numpy rows (row major)
         for pmrows in itertools.permutations(mrows): # so order of rows matters
-            mat = np.array(pmrows).reshape(n, n).T
+            mat = np.array(pmrows).reshape(n, n).T #
+            mat = np.array(pmrows).reshape(n, n)
             yield mat
 
 def closedUnderCross(dcss, m):
@@ -99,8 +102,8 @@ def CHLevel(LevelSeed):
     MDsS=DCsSs[-1] #the last in the list is the Maximal DCsSs
     print(len(MDsS))
     print("MDsS:")
-    for element in MDsS:
-        print(''.join(map(str, element)))
+    MDsSsstrs = [''.join(map(str, element)) for element in MDsS]
+    print("\n".join(sorted(MDsSsstrs)))
     ms = []
     cnt = 0
     for m in generate_bool_matrices(MDsS):
